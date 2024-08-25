@@ -27,8 +27,8 @@ products.forEach((product) => {
           </div>
 
           <div class="product-quantity-container">
-            <select>
-              <option selected value="1">1</option>
+            <select class="quantity">
+              <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
@@ -48,10 +48,48 @@ products.forEach((product) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary js-add-to-cart" id= "${product.id}">
             Add to Cart
           </button>
         </div>`
 });
  
 productGrids.innerHTML = html;
+
+document.querySelectorAll(".js-add-to-cart").forEach((button)=> {
+   
+    button.addEventListener("click", () => {
+      const productId = button.getAttribute("id");
+    
+      let matchingItem;
+
+        cart.forEach((item) =>{
+            if(productId===item.productId){
+                matchingItem=item;
+            } 
+        })
+       
+
+            if(matchingItem){
+                matchingItem.quantity += 1;
+                
+            }
+            else {
+                cart.push({
+                    productId: productId,
+                    quantity: 1
+                
+                })
+            }
+            cartQuantity = 0;
+            
+            cart.forEach((item) => {
+                cartQuantity += item.quantity; 
+
+            })
+            document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
+
+        console.log(cart);
+ })
+})
+
