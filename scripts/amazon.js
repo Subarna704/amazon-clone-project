@@ -57,6 +57,7 @@ products.forEach((product) => {
  
 productGrids.innerHTML = html;
 let isTime;
+updateCartQuantity();
 
 function updateCartQuantity(){
   let cartQuantity = 0;
