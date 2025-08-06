@@ -67,3 +67,22 @@ export function addToCart(productId){
         cartQuantity += cartItem.quantity; 
     });
     return cartQuantity;}
+
+    function updateCartQuantity(productId) {
+        cart.forEach((cartItem) => {
+            if(cartItem.productId === productId){
+
+            }})
+
+
+
+    }
+
+    export function updateQuantity(productId, newQuantity) {
+        cart.forEach((cartItem) => {
+            if(cartItem.productId === productId){
+                cartItem.quantity = newQuantity;
+            }
+        });
+        saveToStorage();
+    }
